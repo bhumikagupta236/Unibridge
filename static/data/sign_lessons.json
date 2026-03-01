@@ -1,17 +1,158 @@
 [
   {
     "name": "A",
-    "image": "https://placehold.co/400x400/374151/FFFFFF?text=Sign+for+A",
-    "description": "A closed fist with the thumb on the side."
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+QTwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter A",
+    "description": "This is the sign for the letter 'A'. It's a closed fist with the thumb resting on the side."
   },
   {
     "name": "B",
-    "image": "https://placehold.co/400x400/374151/FFFFFF?text=Sign+for+B",
-    "description": "A flat hand with the thumb folded across the palm."
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+QjwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter B",
+    "description": "This is the sign for the letter 'B'. It's an open hand with all fingers extended and the thumb tucked across the palm."
   },
   {
     "name": "C",
-    "image": "https://placehold.co/400x400/374151/FFFFFF?text=Sign+for+C",
-    "description": "A curved hand, forming the shape of a 'C'."
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+QzwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter C",
+    "description": "This is the sign for the letter 'C'. It's a hand curved into a 'C' shape, resembling a cup."
+  },
+  {
+    "name": "D",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+RDwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter D",
+    "description": "This is the sign for the letter 'D'. The index finger points straight up, and the other fingers and thumb are closed."
+  },
+  {
+    "name": "E",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+RTwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter E",
+    "description": "This is the sign for the letter 'E'. It's a fist with all fingers slightly curled and touching the palm, and the thumb resting across them."
+  },
+  {
+    "name": "F",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+RjwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter F",
+    "description": "This is the sign for the letter 'F'. The index finger and thumb touch, forming a circle, with the other three fingers extended upwards."
+  },
+  {
+    "name": "G",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+RzwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter G",
+    "description": "This is the sign for the letter 'G'. The index finger points straight forward, and the thumb is also extended, often in line with the index finger."
+  },
+  {
+    "name": "H",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+SDwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter H",
+    "description": "This is the sign for the letter 'H'. The index and middle fingers are extended and held together, pointing forward, with the thumb tucked under."
+  },
+  {
+    "name": "I",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+STwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter I",
+    "description": "This is the sign for the letter 'I'. The pinky finger is extended straight up, and all other fingers and thumb are closed into a fist."
+  },
+  {
+    "name": "J",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+SjwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter J",
+    "description": "This is the sign for the letter 'J'. It starts with the 'I' handshape, then the pinky finger makes a downward, curving motion, like drawing a 'J' in the air."
+  },
+  {
+    "name": "K",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+SzwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter K",
+    "description": "This is the sign for the letter 'K'. The index and middle fingers are extended upwards, with the thumb placed between them."
+  },
+  {
+    "name": "L",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+TDwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter L",
+    "description": "This is the sign for the letter 'L'. The index finger points straight up, and the thumb extends horizontally, forming an 'L' shape."
+  },
+  {
+    "name": "M",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+TTwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter M",
+    "description": "This is the sign for the letter 'M'. The thumb is tucked under the first three fingers (index, middle, ring), which are curled over it."
+  },
+  {
+    "name": "N",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+TjwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter N",
+    "description": "This is the sign for the letter 'N'. The thumb is tucked under the first two fingers (index, middle), which are curled over it."
+  },
+  {
+    "name": "O",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+TzwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter O",
+    "description": "This is the sign for the letter 'O'. The fingers and thumb form a closed circle, resembling the letter 'O'."
+  },
+  {
+    "name": "P",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+UDwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter P",
+    "description": "This is the sign for the letter 'P'. Similar to 'K', but the middle finger points downwards, resting on the thumb, with the index finger extended."
+  },
+  {
+    "name": "Q",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+UTwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter Q",
+    "description": "This is the sign for the letter 'Q'. Similar to 'G', but the hand is inverted, pointing the index finger and thumb downwards."
+  },
+  {
+    "name": "R",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+UjwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter R",
+    "description": "This is the sign for the letter 'R'. The index and middle fingers are crossed, with the thumb holding the ring and pinky fingers down."
+  },
+  {
+    "name": "S",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+UzwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter S",
+    "description": "This is the sign for the letter 'S'. It's a fist with the thumb placed *over* the curled fingers."
+  },
+  {
+    "name": "T",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+VDwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter T",
+    "description": "This is the sign for the letter 'T'. It's a fist with the thumb tucked *between* the index and middle fingers."
+  },
+  {
+    "name": "U",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+VTwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter U",
+    "description": "This is the sign for the letter 'U'. The index and middle fingers are extended straight up and held together, with the thumb tucked under."
+  },
+  {
+    "name": "V",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+VjwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter V",
+    "description": "This is the sign for the letter 'V'. The index and middle fingers are extended upwards and spread apart, resembling a 'V'."
+  },
+  {
+    "name": "W",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+VzwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter W",
+    "description": "This is the sign for the letter 'W'. The index, middle, and ring fingers are extended upwards and spread apart, resembling a 'W'."
+  },
+  {
+    "name": "X",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+WDwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter X",
+    "description": "This is the sign for the letter 'X'. The index finger is bent at the knuckle, resembling a hook, with the thumb resting on the palm."
+  },
+  {
+    "name": "Y",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+WTwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter Y",
+    "description": "This is the sign for the letter 'Y'. The thumb and pinky finger are extended outwards, resembling a 'y' shape, with the middle fingers closed."
+  },
+  {
+    "name": "Z",
+    "image_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj4KPHJlY3QgZmlsbD0iIzRmNDZlNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiLz4KPHRleHQgeD0iNTAlIiB5PSI0NSUiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+WjwvdGV4dD4KPHRleHQgeD0iNTAlIiB5PSI4MCUiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiNjN2QyZmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCI+QVNMIFNpZ248L3RleHQ+Cjwvc3ZnPg==",
+    "alt_text": "A diagram showing the hand sign for the letter Z",
+    "description": "This is the sign for the letter 'Z'. It starts with the index finger extended, then makes a zig-zag motion in the air, like drawing a 'Z'."
   }
 ]

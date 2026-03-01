@@ -1,151 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Sign Language</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
-    <style>
-      body { font-family: 'Inter', sans-serif; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Sign Language</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; margin: 0; }
+    </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen antialiased">
 
-    <!-- Header with Back Button -->
-    <header class="p-6 max-w-5xl mx-auto w-full">
+
+    <header class="px-6 pt-0 pb-2 max-w-5xl mx-auto w-full">
         <nav class="flex items-center">
-            <a href="/" 
+            <a href="/"
                class="flex items-center text-gray-400 hover:text-white transition-colors rounded-full p-2 focus:outline-none focus:ring-4 focus:ring-indigo-500"
                aria-label="Back to home">
-                <i data-lucide="arrow-left" class="w-6 h-6"></i>
-                <span class="ml-2 font-semibold">Home</span>
+                <span class="font-semibold">Home</span>
             </a>
-        </nav>
-    </header>
+        </nav>
+    </header>
 
-    <!-- Main Content -->
-    <main class="max-w-xl mx-auto p-6">
-        <h1 class="text-4xl font-bold text-center">Learn Sign Language</h1>
-        <p class="text-lg text-gray-300 mt-2 text-center">
+
+    <main class="max-w-xl mx-auto px-6 pb-6 pt-0">
+        <h1 class="text-3xl font-bold text-center">Learn Sign Language</h1>
+        <p class="text-base text-gray-300 mt-2 text-center">
             Use the "Next" and "Previous" buttons to study the alphabet.
         </p>
 
-        <!-- Lesson Display Card -->
-        <div class="mt-12 bg-gray-800 p-6 rounded-2xl shadow-lg">
-            
-            <!-- Lesson Title -->
-            <h2 id="lesson-title" class="text-5xl font-bold text-center text-indigo-400">A</h2>
 
-            <!-- Image/GIF Display -->
-            <div class="mt-6 aspect-square bg-gray-700 rounded-lg flex items-center justify-center">
-                <img id="lesson-image" src="https://placehold.co/400x400/4B5563/FFFFFF?text=Sign+for+A" 
-                     alt="A diagram showing the hand sign for the letter A" 
-                     class="max-w-full max-h-full object-contain rounded-lg">
+        <div id="debug-info" class="mt-4 bg-red-900 p-4 rounded-lg text-sm" style="display: none;">
+            <h3 class="font-bold">Debug Info:</h3>
+            <div id="debug-content"></div>
+        </div>
+
+
+        <div class="mt-6 max-w-sm mx-auto bg-gray-800 p-4 rounded-2xl shadow-lg">
+
+
+            <h2 id="lesson-title" class="text-4xl font-bold text-center text-indigo-400">A</h2>
+
+
+            <div class="mt-4 aspect-square bg-gray-700 rounded-lg flex items-center justify-center" id="image-container">
+                <img id="lesson-image" src="" alt="ASL sign" class="max-w-full max-h-full object-contain rounded-lg" style="display: none;">
+                <div id="sign-placeholder" class="flex flex-col items-center justify-center w-full h-full">
+                    <div class="text-6xl mb-3"></div>
+                    <div class="text-4xl font-bold text-white" id="letter-display">A</div>
+                    <div class="text-xl text-indigo-300 mt-1">ASL Sign</div>
+                    <div class="text-sm text-gray-400 mt-3 px-6 text-center">Add AZ images (A.jpg/.png/.gif/.svg) to static/images/signs/asl/</div>
+                </div>
             </div>
 
-            <!-- Description -->
-            <p id="lesson-description" class="text-gray-300 text-center mt-4 text-lg">
+
+            <p id="lesson-description" class="text-gray-300 text-center mt-3 text-base">
                 This is the sign for the letter 'A'. It's a closed fist with the thumb on the side.
             </p>
         </div>
 
-        <!-- Navigation Buttons -->
-        <div class="mt-8 flex justify-between">
-            <button id="prev-button"
+
+        <div class="mt-6 flex items-center justify-between gap-4">
+            <button id="prev-button" onclick="window.goPrev && window.goPrev()"
                     aria-label="Previous lesson"
-                    class="flex items-center bg-gray-700 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-600 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
-                <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i>
-                Previous
+                    class="flex items-center justify-center gap-2 min-w-[140px] bg-gray-700 text-white py-2.5 px-5 rounded-lg font-semibold hover:bg-gray-600 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span>Previous</span>
             </button>
-            <button id="next-button"
+            <button id="next-button" onclick="window.goNext && window.goNext()"
                     aria-label="Next lesson"
-                    class="flex items-center bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
-                Next
-                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                    class="flex items-center justify-center gap-2 min-w-[140px] bg-indigo-600 text-white py-2.5 px-5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                <span>Next</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </button>
         </div>
     </main>
 
-    <!-- Lucide Icons initialization & JavaScript Logic -->
-    <script>
-        lucide.createIcons();
 
-        // --- MENTOR NOTE (JavaScript Logic) ---
-        // This is the client-side "brain" for this page.
-        // It fetches our "database" (the JSON file) and
-        // controls what the user sees.
-        
-        let lessons = [];
-        let currentLessonIndex = 0;
+    <script>
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
 
-        // Get references to our HTML elements
-        const titleEl = document.getElementById('lesson-title');
-        const imageEl = document.getElementById('lesson-image');
-        const descriptionEl = document.getElementById('lesson-description');
-        const prevButton = document.getElementById('prev-button');
-        const nextButton = document.getElementById('next-button');
+        const alphabetData = [
+            {name: 'A', description: "This is the sign for the letter 'A'. It's a closed fist with the thumb resting on the side."},
+            {name: 'B', description: "This is the sign for the letter 'B'. It's an open hand with all fingers extended and the thumb tucked across the palm."},
+            {name: 'C', description: "This is the sign for the letter 'C'. It's a hand curved into a 'C' shape, resembling a cup."},
+            {name: 'D', description: "This is the sign for the letter 'D'. The index finger points straight up, and the other fingers and thumb are closed."},
+            {name: 'E', description: "This is the sign for the letter 'E'. It's a fist with all fingers slightly curled and touching the palm, and the thumb resting across them."},
+            {name: 'F', description: "This is the sign for the letter 'F'. The index finger and thumb touch, forming a circle, with the other three fingers extended upwards."},
+            {name: 'G', description: "This is the sign for the letter 'G'. The index finger points straight forward, and the thumb is also extended, often in line with the index finger."},
+            {name: 'H', description: "This is the sign for the letter 'H'. The index and middle fingers are extended and held together, pointing forward, with the thumb tucked under."},
+            {name: 'I', description: "This is the sign for the letter 'I'. The pinky finger is extended straight up, and all other fingers and thumb are closed into a fist."},
+            {name: 'J', description: "This is the sign for the letter 'J'. It starts with the 'I' handshape, then the pinky finger makes a downward, curving motion, like drawing a 'J' in the air."},
+            {name: 'K', description: "This is the sign for the letter 'K'. The index and middle fingers are extended upwards, with the thumb placed between them."},
+            {name: 'L', description: "This is the sign for the letter 'L'. The index finger points straight up, and the thumb extends horizontally, forming an 'L' shape."},
+            {name: 'M', description: "This is the sign for the letter 'M'. The thumb is tucked under the first three fingers (index, middle, ring), which are curled over it."},
+            {name: 'N', description: "This is the sign for the letter 'N'. The thumb is tucked under the first two fingers (index, middle), which are curled over it."},
+            {name: 'O', description: "This is the sign for the letter 'O'. The fingers and thumb form a closed circle, resembling the letter 'O'."},
+            {name: 'P', description: "This is the sign for the letter 'P'. Similar to 'K', but the middle finger points downwards, resting on the thumb, with the index finger extended."},
+            {name: 'Q', description: "This is the sign for the letter 'Q'. Similar to 'G', but the hand is inverted, pointing the index finger and thumb downwards."},
+            {name: 'R', description: "This is the sign for the letter 'R'. The index and middle fingers are crossed, with the thumb holding the ring and pinky fingers down."},
+            {name: 'S', description: "This is the sign for the letter 'S'. It's a fist with the thumb placed *over* the curled fingers."},
+            {name: 'T', description: "This is the sign for the letter 'T'. It's a fist with the thumb tucked *between* the index and middle fingers."},
+            {name: 'U', description: "This is the sign for the letter 'U'. The index and middle fingers are extended straight up and held together, with the thumb tucked under."},
+            {name: 'V', description: "This is the sign for the letter 'V'. The index and middle fingers are extended upwards and spread apart, resembling a 'V'."},
+            {name: 'W', description: "This is the sign for the letter 'W'. The index, middle, and ring fingers are extended upwards and spread apart, resembling a 'W'."},
+            {name: 'X', description: "This is the sign for the letter 'X'. The index finger is bent at the knuckle, resembling a hook, with the thumb resting on the palm."},
+            {name: 'Y', description: "This is the sign for the letter 'Y'. The thumb and pinky finger are extended outwards, resembling a 'y' shape, with the middle fingers closed."},
+            {name: 'Z', description: "This is the sign for the letter 'Z'. It starts with the index finger extended, then makes a zig-zag motion in the air, like drawing a 'Z'."}
+        ];
 
-        // Function to update the page content
-        function showLesson(index) {
-            if (index < 0 || index >= lessons.length) {
-                return; // Safety check
-            }
-            
-            const lesson = lessons[index];
-            titleEl.textContent = lesson.name;
-            imageEl.src = lesson.image_url;
-            imageEl.alt = lesson.alt_text; // Set the alt text
-            descriptionEl.textContent = lesson.description;
-            
-            currentLessonIndex = index;
-            
-            // Update button states
-            prevButton.disabled = (index === 0);
-            nextButton.disabled = (index === lessons.length - 1);
-        }
+        let currentIndex = 0;
 
-        // Navigation button event listeners
-        prevButton.addEventListener('click', () => {
-            if (currentLessonIndex > 0) {
-                showLesson(currentLessonIndex - 1);
-            }
-        });
+        const STATIC_ASL_BASE = "{{ url_for('static', filename='images/signs/asl/') }}";
+        let aslLocal = {};
 
-        nextButton.addEventListener('click', () => {
-            if (currentLessonIndex < lessons.length - 1) {
-                showLesson(currentLessonIndex + 1);
-            }
-        });
+        const aslRemote = {
+            'A': 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Amer_Sign_Language_A.svg',
+            'B': 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Amer_Sign_Language_B.svg',
+            'C': 'https://upload.wikimedia.org/wikipedia/commons/7/72/Amer_Sign_Language_C.svg',
+            'D': 'https://upload.wikimedia.org/wikipedia/commons/d/d3/Amer_Sign_Language_D.svg',
+            'E': 'https://upload.wikimedia.org/wikipedia/commons/e/e6/Amer_Sign_Language_E.svg',
+            'F': 'https://upload.wikimedia.org/wikipedia/commons/f/f4/Amer_Sign_Language_F.svg',
+            'G': 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Amer_Sign_Language_G.svg',
+            'H': 'https://upload.wikimedia.org/wikipedia/commons/6/61/Amer_Sign_Language_H.svg',
+            'I': 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Amer_Sign_Language_I.svg',
+            'J': 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Amer_Sign_Language_J.svg',
+            'K': 'https://upload.wikimedia.org/wikipedia/commons/a/ae/Amer_Sign_Language_K.svg',
+            'L': 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Amer_Sign_Language_L.svg',
+            'M': 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Amer_Sign_Language_M.svg',
+            'N': 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Amer_Sign_Language_N.svg',
+            'O': 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Amer_Sign_Language_O.svg',
+            'P': 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Amer_Sign_Language_P.svg',
+            'Q': 'https://upload.wikimedia.org/wikipedia/commons/0/09/Amer_Sign_Language_Q.svg',
+            'R': 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Amer_Sign_Language_R.svg',
+            'S': 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Amer_Sign_Language_S.svg',
+            'T': 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Amer_Sign_Language_T.svg',
+            'U': 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Amer_Sign_Language_U.svg',
+            'V': 'https://upload.wikimedia.org/wikipedia/commons/4/48/Amer_Sign_Language_V.svg',
+            'W': 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Amer_Sign_Language_W.svg',
+            'X': 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Amer_Sign_Language_X.svg',
+            'Y': 'https://upload.wikimedia.org/wikipedia/commons/b/b5/Amer_Sign_Language_Y.svg',
+            'Z': 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Amer_Sign_Language_Z.svg'
+        };
 
-        // This function runs when the page first loads
-        async function loadLessons() {
-            try {
-                // Fetch our "database"
-                // We use '/static/data/...' because Flask serves the 'static' folder
-                const response = await fetch('/static/data/sign_lessons.json');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                lessons = await response.json();
-                
-                // Show the first lesson
-                if (lessons.length > 0) {
-                    showLesson(0);
-                } else {
-                    titleEl.textContent = "No lessons found.";
-                    descriptionEl.textContent = "Please check if the 'sign_lessons.json' file exists in '/static/data/'.";
-                }
-            } catch (error) {
-                console.error('Error fetching lessons:', error);
-                titleEl.textContent = "Error";
-                descriptionEl.textContent = "Could not load lessons. See console for details.";
-            }
-        }
+        function tryLoadSequence(sources, onSuccess, onFail) {
+            let idx = 0;
+            const testImg = new Image();
 
-        // Run our load function when the page is ready
-        document.addEventListener('DOMContentLoaded', loadLessons);
+            const next = () => {
+                if (idx >= sources.length) { onFail(); return; }
+                const src = sources[idx++];
+                testImg.onload = () => onSuccess(src);
+                testImg.onerror = next;
+                testImg.src = src;
+            };
 
-    </script>
+            next();
+        }
+
+        function updateDisplay() {
+            const current = alphabetData[currentIndex];
+            const lessonImage = document.getElementById('lesson-image');
+            const signPlaceholder = document.getElementById('sign-placeholder');
+
+            document.getElementById('lesson-title').textContent = current.name;
+            document.getElementById('letter-display').textContent = current.name;
+            document.getElementById('lesson-description').textContent = current.description;
+
+            const letter = current.name;
+            const sources = [];
+            if (aslLocal[letter]?.url) sources.push(aslLocal[letter].url);
+            const localCandidates = ['jpg','jpeg','png','gif','svg'].map(ext => `${STATIC_ASL_BASE}${letter}.${ext}`);
+            sources.push(...localCandidates);
+            if (aslRemote[letter]) sources.push(aslRemote[letter]);
+
+            tryLoadSequence(
+                sources,
+                (src) => {
+                    lessonImage.src = src;
+                    lessonImage.style.display = 'block';
+                    signPlaceholder.style.display = 'none';
+                },
+                () => {
+                    lessonImage.style.display = 'none';
+                    signPlaceholder.style.display = 'flex';
+                }
+            );
+
+            document.getElementById('prev-button').disabled = (currentIndex === 0);
+            document.getElementById('next-button').disabled = (currentIndex === alphabetData.length - 1);
+        }
+
+        window.goNext = function() {
+            if (currentIndex < alphabetData.length - 1) {
+                currentIndex++;
+                updateDisplay();
+            }
+        };
+
+        window.goPrev = function() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateDisplay();
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const resp = await fetch('/api/asl_images');
+                if (resp.ok) {
+                    aslLocal = await resp.json();
+                }
+            } catch (e) {
+            }
+            updateDisplay();
+
+            var nextBtn = document.getElementById('next-button');
+            var prevBtn = document.getElementById('prev-button');
+
+            if (nextBtn) {
+                nextBtn.onclick = window.goNext;
+            }
+
+            if (prevBtn) {
+                prevBtn.onclick = window.goPrev;
+            }
+        });
+    </script>
 </body>
 </html>

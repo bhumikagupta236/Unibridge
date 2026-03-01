@@ -10,17 +10,17 @@
       body { font-family: 'Inter', sans-serif; }
       .braille-font-large {
         font-family: 'Courier New', Courier, monospace;
-        font-size: 8rem; /* Make braille character huge */
+        font-size: 4rem;
         letter-spacing: 2px;
       }
     </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen antialiased">
 
-    <!-- Header with Back Button -->
-    <header class="p-6 max-w-5xl mx-auto w-full">
+
+    <header class="px-6 py-2 max-w-5xl mx-auto w-full">
         <nav class="flex items-center">
-            <a href="/" 
+            <a href="/"
                class="flex items-center text-gray-400 hover:text-white transition-colors rounded-full p-2 focus:outline-none focus:ring-4 focus:ring-indigo-500"
                aria-label="Back to home">
                 <i data-lucide="arrow-left" class="w-6 h-6"></i>
@@ -29,85 +29,75 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-xl mx-auto p-6">
-        <h1 class="text-4xl font-bold text-center">Learn Braille</h1>
-        <p class="text-lg text-gray-300 mt-2 text-center">
+
+    <main class="max-w-xl mx-auto px-6 pb-6 pt-0">
+        <h1 class="text-3xl font-bold text-center">Learn Braille</h1>
+        <p class="text-base text-gray-300 mt-2 text-center">
             Use the "Next" and "Previous" buttons to study the alphabet.
         </p>
 
-        <!-- Lesson Display Card -->
-        <div class="mt-12 bg-gray-800 p-6 rounded-2xl shadow-lg">
-            
-            <!-- Lesson Title -->
-            <h2 id="lesson-title" class="text-5xl font-bold text-center text-indigo-400">A</h2>
 
-            <!-- Braille Display -->
-            <div class="mt-6 aspect-video bg-gray-700 rounded-lg flex items-center justify-center">
-                <p id="lesson-braille" class="braille-font-large text-white">⠁</p>
+        <div class="mt-8 bg-gray-800 p-5 rounded-2xl shadow-lg">
+
+
+            <h2 id="lesson-title" class="text-4xl font-bold text-center text-indigo-400">...</h2>
+
+
+            <div class="mt-4 aspect-video bg-gray-700 rounded-lg flex items-center justify-center">
+                <p id="lesson-braille" class="braille-font-large text-white">...</p>
             </div>
 
-            <!-- Description -->
-            <p id="lesson-description" class="text-gray-300 text-center mt-4 text-lg">
-                This is the Braille for the letter 'A'.
+
+            <p id="lesson-description" class="text-gray-300 text-center mt-3 text-base">
+                Loading lessons...
             </p>
         </div>
 
-        <!-- Navigation Buttons -->
-        <div class="mt-8 flex justify-between">
+
+        <div class="mt-6 flex items-center justify-between gap-4">
             <button id="prev-button"
                     aria-label="Previous lesson"
-                    class="flex items-center bg-gray-700 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-600 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
-                <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i>
-                Previous
+                    class="flex items-center justify-center gap-2 min-w-[140px] bg-gray-700 text-white py-2.5 px-5 rounded-lg font-semibold hover:bg-gray-600 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span>Previous</span>
             </button>
             <button id="next-button"
                     aria-label="Next lesson"
-                    class="flex items-center bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
-                Next
-                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                    class="flex items-center justify-center gap-2 min-w-[140px] bg-indigo-600 text-white py-2.5 px-5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                <span>Next</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </button>
         </div>
     </main>
 
-    <!-- Lucide Icons initialization & JavaScript Logic -->
+
     <script>
-        lucide.createIcons();
-        
-        // --- MENTOR NOTE (JavaScript Logic) ---
-        // This logic is identical to the 'learn-sign' page,
-        // just pointing to a different JSON file and updating
-        // different elements.
-        
+
         let lessons = [];
         let currentLessonIndex = 0;
 
-        // Get references to our HTML elements
         const titleEl = document.getElementById('lesson-title');
         const brailleEl = document.getElementById('lesson-braille');
         const descriptionEl = document.getElementById('lesson-description');
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
 
-        // Function to update the page content
         function showLesson(index) {
             if (index < 0 || index >= lessons.length) {
-                return; // Safety check
+                return;
             }
-            
+
             const lesson = lessons[index];
             titleEl.textContent = lesson.name;
-            brailleEl.textContent = lesson.braille; // Update braille text
+            brailleEl.textContent = lesson.braille;
             descriptionEl.textContent = lesson.description;
-            
+
             currentLessonIndex = index;
-            
-            // Update button states
+
             prevButton.disabled = (index === 0);
             nextButton.disabled = (index === lessons.length - 1);
         }
 
-        // Navigation button event listeners
         prevButton.addEventListener('click', () => {
             if (currentLessonIndex > 0) {
                 showLesson(currentLessonIndex - 1);
@@ -120,32 +110,60 @@
             }
         });
 
-        // This function runs when the page first loads
-        async function loadLessons() {
+        function loadLessons() {
             try {
-                // Fetch our "database"
-                const response = await fetch('/static/data/braille_lessons.json');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                lessons = await response.json();
-                
-                // Show the first lesson
+                lessons = [
+                    { "name": "A", "braille": "⠁", "description": "Dot 1" },
+                    { "name": "B", "braille": "⠃", "description": "Dots 1, 2" },
+                    { "name": "C", "braille": "⠉", "description": "Dots 1, 4" },
+                    { "name": "D", "braille": "⠙", "description": "Dots 1, 4, 5" },
+                    { "name": "E", "braille": "⠑", "description": "Dots 1, 5" },
+                    { "name": "F", "braille": "⠋", "description": "Dots 1, 2, 4" },
+                    { "name": "G", "braille": "⠛", "description": "Dots 1, 2, 4, 5" },
+                    { "name": "H", "braille": "⠓", "description": "Dots 1, 2, 5" },
+                    { "name": "I", "braille": "⠊", "description": "Dots 2, 4" },
+                    { "name": "J", "braille": "⠚", "description": "Dots 2, 4, 5" },
+                    { "name": "K", "braille": "⠅", "description": "Dots 1, 3" },
+                    { "name": "L", "braille": "⠇", "description": "Dots 1, 2, 3" },
+                    { "name": "M", "braille": "⠍", "description": "Dots 1, 3, 4" },
+                    { "name": "N", "braille": "⠝", "description": "Dots 1, 3, 4, 5" },
+                    { "name": "O", "braille": "⠕", "description": "Dots 1, 3, 5" },
+                    { "name": "P", "braille": "⠏", "description": "Dots 1, 2, 3, 4" },
+                    { "name": "Q", "braille": "⠟", "description": "Dots 1, 2, 3, 4, 5" },
+                    { "name": "R", "braille": "⠗", "description": "Dots 1, 2, 3, 5" },
+                    { "name": "S", "braille": "⠎", "description": "Dots 2, 3, 4" },
+                    { "name": "T", "braille": "⠞", "description": "Dots 2, 3, 4, 5" },
+                    { "name": "U", "braille": "⠥", "description": "Dots 1, 3, 6" },
+                    { "name": "V", "braille": "⠧", "description": "Dots 1, 2, 3, 6" },
+                    { "name": "W", "braille": "⠺", "description": "Dots 2, 4, 5, 6" },
+                    { "name": "X", "braille": "⠭", "description": "Dots 1, 3, 4, 6" },
+                    { "name": "Y", "braille": "⠽", "description": "Dots 1, 3, 4, 5, 6" },
+                    { "name": "Z", "braille": "⠵", "description": "Dots 1, 3, 5, 6" }
+                ];
+
+
                 if (lessons.length > 0) {
                     showLesson(0);
                 } else {
                     titleEl.textContent = "No lessons found.";
-                    descriptionEl.textContent = "Please check if the 'braille_lessons.json' file exists in '/static/data/'.";
+                    descriptionEl.textContent = "Data array is empty.";
                 }
             } catch (error) {
-                console.error('Error fetching lessons:', error);
+                console.error('Error loading lessons:', error);
                 titleEl.textContent = "Error";
                 descriptionEl.textContent = "Could not load lessons. See console for details.";
             }
         }
 
-        // Run our load function when the page is ready
-        document.addEventListener('DOMContentLoaded', loadLessons);
+        window.addEventListener('load', () => {
+            try {
+                lucide.createIcons();
+            } catch (e) {
+                console.error("Lucide icons error:", e);
+            }
+
+            loadLessons();
+        });
 
     </script>
 </body>

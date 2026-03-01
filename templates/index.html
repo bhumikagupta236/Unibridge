@@ -5,33 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniBridge - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
       body { font-family: 'Inter', sans-serif; }
+
+      .feature-card { position: relative; overflow: hidden; }
+      .feature-card::before {
+        content: "";
+        position: absolute; inset: -1px; border-radius: 1rem;
+        background:
+          radial-gradient(600px 200px at 0% 0%, rgba(99,102,241,.20), transparent 55%),
+          radial-gradient(600px 200px at 100% 100%, rgba(236,72,153,.15), transparent 55%);
+        pointer-events: none;
+      }
+      .logo-badge { width: 56px; height: 56px; border-radius: 14px; display:flex; align-items:center; justify-content:center; box-shadow: 0 10px 25px rgba(0,0,0,.35); }
+
+      .site-logo {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+        padding: 6px;
+        background:
+          radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.18), transparent 55%),
+          rgba(15, 23, 42, 0.95);
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.85);
+      }
     </style>
 </head>
 
-<body class="bg-gray-900 text-white min-h-screen antialiased">
+<body class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white min-h-screen antialiased">
 
-    <!-- Header Section -->
+
     <header class="p-6 max-w-7xl mx-auto w-full">
         <nav class="flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex items-center space-x-2">
-                <div class="bg-indigo-600 p-2 rounded-lg">
-                    <span class="font-bold text-xl">UB</span>
+
+            <div class="flex items-center space-x-3">
+                <img
+                  src="{{ url_for('static', filename='images/logo/unibridge.png') }}"
+                  alt="UniBridge logo"
+                  class="site-logo object-contain"
+                  onerror="this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');"
+                />
+
+                <div class="hidden flex items-center space-x-2">
+                  <div class="bg-indigo-600 p-2 rounded-lg">
+                      <span class="font-bold text-xl">UB</span>
+                  </div>
                 </div>
-                <h1 class="text-2xl font-bold">UniBridge</h1>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-300 bg-clip-text text-transparent">UniBridge</h1>
             </div>
-            
-            <!-- 
-              MENTOR NOTE: Accessibility Update!
-              - We've changed this from just an <i> to a <button>.
-              - We added `aria-label` for screen readers.
-              - We added `focus:ring` for keyboard users.
-            -->
-            <button 
-              aria-label="Settings" 
+
+            <button
+              aria-label="Settings"
               class="p-2 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50"
             >
                 <i data-lucide="settings" class="w-6 h-6"></i>
@@ -39,82 +64,149 @@
         </nav>
     </header>
 
-    <!-- Main Content Section -->
     <main class="max-w-7xl mx-auto p-6 mt-10">
-        
-        <!-- Hero Text -->
-        <div class="text-center max-w-2xl mx-auto">
+
+
+        <div class="text-center max-w-3xl mx-auto">
+            <div class="flex justify-center mb-6">
+                <span class="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 text-indigo-300 px-4 py-2 text-sm border border-indigo-400/30">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    Breaking Communication Barriers
+                </span>
+            </div>
             <h2 class="text-4xl font-bold md:text-5xl">
                 Connect. Learn. Communicate.
             </h2>
             <p class="text-lg text-gray-300 mt-4">
-                UniBridge is a platform designed to break down communication barriers. Learn sign language, convert speech to text, work with Braille, and access a universal dictionary—all in one accessible place.
+                UniBridge is your all‑in‑one platform for accessible communication. Learn sign language, convert speech to text, and work with Braille—designed with accessibility in mind.
             </p>
         </div>
 
-        <!-- 
-          MENTOR NOTE: Accessibility Update!
-          - We've added `focus:outline-none` and `focus:ring-4` to every card.
-          - Now, when you press 'Tab', you'll see a clear blue ring.
-        -->
-        
-        <!-- Features Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-            
-            <!-- Card 1: Learn Sign Language -->
-            <a href="/learn-sign" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
-                <i data-lucide="sign-language" class="w-16 h-16 text-indigo-400 mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Learn Sign Language</h3>
-                <p class="text-gray-400">Step-by-step lessons for ASL.</p>
+
+        <h3 class="mt-16 text-sm uppercase tracking-widest text-indigo-300/80 text-center">Learn</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+
+            <a href="/learn-sign" class="group feature-card bg-white/5 border border-slate-700/60 hover:border-indigo-500/50 hover:bg-white/10 transition-colors rounded-2xl p-8 flex flex-col items-start gap-4 text-left h-full min-h-[220px] shadow-xl shadow-black/40">
+                <div class="logo-badge bg-gradient-to-br from-indigo-500 to-violet-600">
+<i data-lucide="hand" class="w-8 h-8 text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Learn Sign Language</h3>
+                  <p class="text-gray-400 mt-1">Learn and practice sign language</p>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                  </div>
+                  <div class="mt-4 inline-flex items-center gap-2 text-indigo-300 group-hover:text-indigo-200">
+                    <span class="font-medium">Start learning</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"></i>
+                  </div>
+                </div>
             </a>
 
-            <!-- Card 2: Learn Braille -->
-            <a href="/learn-braille" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
-                <i data-lucide="braille" class="w-16 h-16 text-indigo-400 mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Learn Braille</h3>
-                <p class="text-gray-400">Understand the basics of Braille.</p>
+            <a href="/learn-braille" class="group feature-card bg-white/5 border border-slate-700/60 hover:border-indigo-500/50 hover:bg-white/10 transition-colors rounded-2xl p-8 flex flex-col items-start gap-4 text-left h-full min-h-[220px] shadow-xl shadow-black/40">
+                <div class="logo-badge bg-gradient-to-br from-emerald-500 to-teal-600">
+<i data-lucide="grip" class="w-8 h-8 text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Learn Braille</h3>
+                  <p class="text-gray-400 mt-1">Convert text to Braille and back</p>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                  </div>
+                  <div class="mt-4 inline-flex items-center gap-2 text-emerald-300 group-hover:text-emerald-200">
+                    <span class="font-medium">Start learning</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"></i>
+                  </div>
+                </div>
             </a>
-            
-            <!-- Card 3: Dictionary -->
-            <a href="/dictionary" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
-                <i data-lucide="book-open" class="w-16 h-16 text-indigo-400 mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Dictionary</h3>
-                <p class="text-gray-400">Universal translator for all formats.</p>
+        </div>
+
+        <h3 class="mt-14 text-sm uppercase tracking-widest text-indigo-300/80 text-center">Tools</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+
+            <a href="/speech" class="group feature-card bg-white/5 border border-slate-700/60 hover:border-indigo-500/50 hover:bg-white/10 transition-colors rounded-2xl p-8 flex flex-col items-start gap-4 text-left h-full min-h-[220px] shadow-xl shadow-black/40">
+                <div class="logo-badge bg-gradient-to-br from-sky-500 to-blue-600">
+<i data-lucide="type" class="w-8 h-8 text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Speech & Text</h3>
+                  <p class="text-gray-400 mt-1">Convert speech to text and vice versa</p>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                  </div>
+                  <div class="mt-4 inline-flex items-center gap-2 text-sky-300 group-hover:text-sky-200">
+                    <span class="font-medium">Open tool</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"></i>
+                  </div>
+                </div>
             </a>
 
-            <!-- Card 4: Speech & Text -->
-            <a href="/speech" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
-                <i data-lucide="mic" class="w-16 h-16 text-indigo-400 mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Speech & Text</h3>
-                <p class="text-gray-400">Convert speech to text and back.</p>
-            </a>
-            
-            <!-- Card 5: Braille ↔ Text -->
-            <a href="/braille" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
-                <i data-lucide="binary" class="w-16 h-16 text-indigo-400 mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Braille ↔ Text</h3>
-                <p class="text-gray-400">Simple Braille conversion tool.</p>
-            </a>
-
-            <!-- Card 6: Sign → Text -->
-            <a href="/sign-to-text" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
-                <i data-lucide="webcam" class="w-16 h-16 text-indigo-400 mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Sign → Text</h3>
-                <p class="text-gray-400">Upload a sign for recognition.</p>
+            <a href="/braille" class="group feature-card bg-white/5 border border-slate-700/60 hover:border-indigo-500/50 hover:bg-white/10 transition-colors rounded-2xl p-8 flex flex-col items-start gap-4 text-left h-full min-h-[220px] shadow-xl shadow-black/40">
+                <div class="logo-badge bg-gradient-to-br from-amber-500 to-orange-600">
+<i data-lucide="type" class="w-8 h-8 text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Braille ↔ Text</h3>
+                  <p class="text-gray-400 mt-1">Simple Braille conversion tool</p>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                  </div>
+                  <div class="mt-4 inline-flex items-center gap-2 text-amber-300 group-hover:text-amber-200">
+                    <span class="font-medium">Open converter</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"></i>
+                  </div>
+                </div>
             </a>
 
+            <a href="/sign-to-text" class="group feature-card bg-white/5 border border-slate-700/60 hover:border-indigo-500/50 hover:bg-white/10 transition-colors rounded-2xl p-8 flex flex-col items-start gap-4 text-left h-full min-h-[220px] shadow-xl shadow-black/40">
+                <div class="logo-badge bg-gradient-to-br from-fuchsia-500 to-pink-600">
+<i data-lucide="camera" class="w-8 h-8 text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Sign → Text</h3>
+                  <p class="text-gray-400 mt-1">Live recognition with your webcam</p>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                  </div>
+                  <div class="mt-4 inline-flex items-center gap-2 text-fuchsia-300 group-hover:text-fuchsia-200">
+                    <span class="font-medium">Open recognizer</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"></i>
+                  </div>
+                </div>
+            </a>
+        </div>
+
+        <h3 class="mt-14 text-sm uppercase tracking-widest text-gray-300/70 text-center">Why UniBridge</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+
+            <div class="rounded-2xl p-8 border border-purple-500/40 bg-gradient-to-br from-purple-600/15 to-fuchsia-600/10 shadow-xl shadow-black/30">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="logo-badge bg-gradient-to-br from-purple-500 to-fuchsia-600"><i data-lucide="graduation-cap" class="w-6 h-6 text-white"></i></div>
+                    <h3 class="text-xl font-semibold text-white">Learn & Practice</h3>
+                </div>
+                <p class="text-gray-300">Interactive lessons and practice modes for continuous improvement</p>
+            </div>
+
+            <div class="rounded-2xl p-8 border border-sky-500/40 bg-gradient-to-br from-sky-600/15 to-blue-600/10 shadow-xl shadow-black/30">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="logo-badge bg-gradient-to-br from-sky-500 to-blue-600"><i data-lucide="accessibility" class="w-6 h-6 text-white"></i></div>
+                    <h3 class="text-xl font-semibold text-white">Fully Accessible</h3>
+                </div>
+                <p class="text-gray-300">Designed with WCAG standards and screen reader compatibility</p>
+            </div>
+
+            <div class="rounded-2xl p-8 border border-rose-500/40 bg-gradient-to-br from-rose-600/15 to-fuchsia-600/10 shadow-xl shadow-black/30">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="logo-badge bg-gradient-to-br from-rose-500 to-fuchsia-600"><i data-lucide="globe" class="w-6 h-6 text-white"></i></div>
+                    <h3 class="text-xl font-semibold text-white">Universal Design</h3>
+                </div>
+                <p class="text-gray-300">Breaking barriers across languages and abilities worldwide</p>
+            </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="text-center p-10 mt-16 text-gray-500 border-t border-gray-800">
         © 2025 UniBridge. Making communication accessible for everyone.
     </footer>
-    
-    <!-- This script loads the icons -->
+
+
     <script>
       lucide.createIcons();
     </script>
 </body>
 </html>
-

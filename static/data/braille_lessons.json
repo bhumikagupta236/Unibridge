@@ -1,17 +1,28 @@
 [
-  {
-    "name": "A",
-    "braille": "⠁",
-    "description": "Dot 1"
-  },
-  {
-    "name": "B",
-    "braille": "⠃",
-    "description": "Dots 1 and 2"
-  },
-  {
-    "name": "C",
-    "braille": "⠉",
-    "description": "Dots 1 and 4"
-  }
+  { "name": "A", "braille": "⠁", "description": "Dot 1" },
+  { "name": "B", "braille": "⠃", "description": "Dots 1, 2" },
+  { "name": "C", "braille": "⠉", "description": "Dots 1, 4" },
+  { "name": "D", "braille": "⠙", "description": "Dots 1, 4, 5" },
+  { "name": "E", "braille": "⠑", "description": "Dots 1, 5" },
+  { "name": "F", "braille": "⠋", "description": "Dots 1, 2, 4" },
+  { "name": "G", "braille": "⠛", "description": "Dots 1, 2, 4, 5" },
+  { "name": "H", "braille": "⠓", "description": "Dots 1, 2, 5" },
+  { "name": "I", "braille": "⠊", "description": "Dots 2, 4" },
+  { "name": "J", "braille": "⠚", "description": "Dots 2, 4, 5" },
+  { "name": "K", "braille": "⠅", "description": "Dots 1, 3" },
+  { "name": "L", "braille": "⠇", "description": "Dots 1, 2, 3" },
+  { "name": "M", "braille": "⠍", "description": "Dots 1, 3, 4" },
+  { "name": "N", "braille": "⠝", "description": "Dots 1, 3, 4, 5" },
+  { "name": "O", "braille": "⠕", "description": "Dots 1, 3, 5" },
+  { "name": "P", "braille": "⠏", "description": "Dots 1, 2, 3, 4" },
+  { "name": "Q", "braille": "⠟", "description": "Dots 1, 2, 3, 4, 5" },
+  { "name": "R", "braille": "⠗", "description": "Dots 1, 2, 3, 5" },
+  { "name": "S", "braille": "⠎", "description": "Dots 2, 3, 4" },
+  { "name": "T", "braille": "⠞", "description": "Dots 2, 3, 4, 5" },
+  { "name": "U", "braille": "⠥", "description": "Dots 1, 3, 6" },
+  { "name": "V", "braille": "⠧", "description": "Dots 1, 2, 3, 6" },
+  { "name": "W", "braille": "⠺", "description": "Dots 2, 4, 5, 6" },
+  { "name": "X", "braille": "⠭", "description": "Dots 1, 3, 4, 6" },
+  { "name": "Y", "braille": "⠽", "description": "Dots 1, 3, 4, 5, 6" },
+  { "name": "Z", "braille": "⠵", "description": "Dots 1, 3, 5, 6" }
 ]

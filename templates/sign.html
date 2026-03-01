@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign → Text Recognition</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
-    <!-- 
-      MENTOR NOTE (Part 1): We must import the Socket.IO client library.
-      This is the JavaScript "half" that lets us talk to our Python "half".
-    -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
     <style>
       body { font-family: 'Inter', sans-serif; }
-      /* Flip the video feed horizontally so it acts like a mirror */
+
       video {
         transform: scaleX(-1);
       }
@@ -21,10 +18,10 @@
 </head>
 <body class="bg-gray-900 text-white min-h-screen antialiased">
 
-    <!-- Header with Back Button -->
+
     <header class="p-6 max-w-5xl mx-auto w-full">
         <nav class="flex items-center">
-            <a href="/" 
+            <a href="/"
                class="flex items-center text-gray-400 hover:text-white transition-colors rounded-full p-2 focus:outline-none focus:ring-4 focus:ring-indigo-500"
                aria-label="Back to home">
                 <i data-lucide="arrow-left" class="w-6 h-6"></i>
@@ -33,60 +30,42 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
+
     <main class="max-w-5xl mx-auto p-6">
         <h1 class="text-4xl font-bold text-center">Live Sign Recognition</h1>
         <p class="text-lg text-gray-300 mt-2 text-center">
             Show your hand to the webcam. Our (simulated) AI will try to recognize the sign.
         </p>
-        
+
         <div class="mt-8 grid md:grid-cols-2 gap-8 items-start">
-            
-            <!-- Left Column: Video Feed & Status -->
+
+
             <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
                 <h2 class="text-2xl font-semibold mb-4">Webcam Feed</h2>
-                
-                <!-- 
-                  MENTOR NOTE (Part 2): This is our video player.
-                  The JavaScript will get the webcam feed and put it here.
-                  'aria-label' tells screen readers what this element is.
-                -->
+
+
                 <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden">
-                    <video id="webcam" autoplay playsinline class="w-full h-full object-cover" 
+                    <video id="webcam" autoplay playsinline class="w-full h-full object-cover"
                            aria-label="Live webcam feed for sign language recognition"></video>
                 </div>
 
-                <!-- 
-                  MENTOR NOTE (Part 3): This canvas is hidden.
-                  We use it as a "snapshot" tool to grab a single frame
-                  from the video to send to the server.
-                -->
+
                 <canvas id="canvas" class="hidden"></canvas>
 
-                <!-- 
-                  MENTOR NOTE (Part 4): Accessibility (ARIA).
-                  'aria-live="polite"' tells a screen reader to announce
-                  any changes to this text *without* interrupting the user.
-                  It's perfect for status updates.
-                -->
-                <div id="status" 
+
+                <div id="status"
                      class="mt-4 text-center text-gray-400"
                      aria-live="polite">
                     Connecting to server...
                 </div>
             </div>
 
-            <!-- Right Column: Recognition Result -->
+
             <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
                 <h2 class="text-2xl font-semibold mb-4">Recognized Sign</h2>
                 <div class="aspect-video bg-gray-700 rounded-lg flex items-center justify-center">
-                    <!-- 
-                      MENTOR NOTE (Part 5): Accessibility (ARIA).
-                      'aria-live="assertive"' tells a screen reader to
-                      announce changes *immediately*. This is great for
-                      important results, like the sign changing.
-                    -->
-                    <p id="result-text" 
+
+                    <p id="result-text"
                        class="text-9xl font-bold text-indigo-400"
                        aria-live="assertive">
                         ...
@@ -99,19 +78,13 @@
         </div>
     </main>
 
-    <!-- Lucide Icons initialization -->
+
     <script>
         lucide.createIcons();
 
-        // --- MENTOR NOTE (JavaScript Logic) ---
-        // This is the most complex client-side code in our app.
-        
-        // Wait for the page to be fully loaded
+
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Part 1: Connect to our Socket.IO server ---
-            // We use io() which we got from the <script> tag in the <head>
-            // 'transports' is important for reliability.
-            const socket = io({ transports: ['websocket'] });
+            const socket = io();
 
             const video = document.getElementById('webcam');
             const canvas = document.getElementById('canvas');
@@ -119,11 +92,10 @@
             const statusEl = document.getElementById('status');
             const resultEl = document.getElementById('result-text');
 
-            // --- Part 2: Handle Socket.IO connection events ---
             socket.on('connect', () => {
                 console.log('Connected to server!');
                 statusEl.textContent = 'Connected! Starting webcam...';
-                startWebcam(); // Start the webcam *after* we connect
+                startWebcam();
             });
 
             socket.on('disconnect', () => {
@@ -131,55 +103,67 @@
                 statusEl.textContent = 'Disconnected. Please refresh.';
             });
 
-            // --- Part 3: Listen for results from the server ---
-            // This is where we get the 'A', 'B', 'C', etc.
-            socket.on('recognition_result', (data) => {
-                // Update the big letter on the screen
-                resultEl.textContent = data.letter || '...';
-                statusEl.textContent = `Receiving... (${data.status})`;
+            socket.io.on('error', (err) => {
+                console.error('Socket.IO connection error:', err);
+                statusEl.textContent = 'Error connecting to server.';
             });
 
-            // --- Part 4: The Webcam Function ---
+            socket.on('recognition_result', (data) => {
+                console.log('Recognition result from server:', data);
+                resultEl.textContent = (data && data.letter) ? data.letter : '...';
+                if (data && data.status) {
+                    statusEl.textContent = `Receiving... (${data.status})`;
+                } else {
+                    statusEl.textContent = 'Receiving...';
+                }
+            });
+
             async function startWebcam() {
                 try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                        console.error('getUserMedia is not supported in this browser/context');
+                        statusEl.textContent = 'Error: getUserMedia is not supported in this browser.';
+                        statusEl.setAttribute('role', 'alert');
+                        return;
+                    }
+
+                    const constraints = {
+                        video: {
+                            facingMode: 'user',
+                            width: { ideal: 640 },
+                            height: { ideal: 480 }
+                        }
+                    };
+
+                    const stream = await navigator.mediaDevices.getUserMedia(constraints);
                     video.srcObject = stream;
-                    
+
                     video.onloadedmetadata = () => {
-                        // Set canvas to the same size as the video
                         canvas.width = video.videoWidth;
                         canvas.height = video.videoHeight;
-                        
-                        // Start the loop: send a frame every 100ms
-                        setInterval(sendFrame, 100); 
+
+                        setInterval(sendFrame, 100);
                     };
 
                 } catch (err) {
                     console.error('Error accessing webcam:', err);
-                    statusEl.textContent = 'Error: Could not access webcam.';
-                    // Add an ARIA alert for screen readers
+                    const name = err && err.name ? err.name : 'UnknownError';
+                    const message = err && err.message ? err.message : '';
+                    statusEl.textContent = `Error: Could not access webcam. (${name}: ${message})`;
                     statusEl.setAttribute('role', 'alert');
                 }
             }
 
-            // --- Part 5: The "Send Frame" Function ---
-            // This runs 10 times per second
             function sendFrame() {
-                if (!socket.connected) return; // Don't send if not connected
+                if (!socket.connected) return;
 
-                // 1. Draw the video's current frame onto the hidden canvas
                 context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                
-                // 2. Get the image data from the canvas as a Base64 string
-                // We use 'jpeg' and a low quality (0.5) for speed.
+
                 const imageData = canvas.toDataURL('image/jpeg', 0.5);
-                
-                // 3. Send this image data to the server over the socket
-                // We send only the data part, without 'data:image/jpeg;base64,'
+
                 socket.emit('video_frame', imageData.split(',')[1]);
             }
         });
     </script>
 </body>
 </html>
-
