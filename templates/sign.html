@@ -84,7 +84,11 @@
 
 
         document.addEventListener('DOMContentLoaded', () => {
-            const socket = io();
+            const socket = io("http://myunibridge.xyz",{
+                transports:["websocket"],
+                upgrade:false,
+                reconnectionAttempts:5
+            });
 
             const video = document.getElementById('webcam');
             const canvas = document.getElementById('canvas');
