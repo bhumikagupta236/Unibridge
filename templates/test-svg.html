@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test SVG Images</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .image-test {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        img {
+            max-width: 400px;
+            height: 400px;
+            border: 2px solid #4f46e5;
+            border-radius: 8px;
+        }
+        .info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 SVG Image Test</h1>
+        <p>Testing if SVG data URLs work properly...</p>
+
+        <div class="image-test">
+            <h2>Test 1: Direct SVG Data URL</h2>
+            <img id="test1" src="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%27400%27%20height=%27400%27%3E%3Crect%20fill=%27%234f46e5%27%20width=%27400%27%20height=%27400%27/%3E%3Ctext%20x=%2750%%27%20y=%2750%%27%20font-size=%27200%27%20fill=%27white%27%20text-anchor=%27middle%27%20dy=%27.3em%27%20font-family=%27Arial,%20sans-serif%27%3EA%3C/text%3E%3Ctext%20x=%2750%%27%20y=%2775%%27%20font-size=%2724%27%20fill=%27%23e0e7ff%27%20text-anchor=%27middle%27%20font-family=%27Arial%27%3EASL%20Sign%3C/text%3E%3C/svg%3E" alt="Letter A">
+            <div class="info">✓ If you see a purple square with letter 'A', SVG data URLs work!</div>
+        </div>
+
+        <div class="image-test">
+            <h2>Test 2: Loading from JSON</h2>
+            <img id="test2" alt="From JSON">
+            <div class="info" id="json-status">Loading from JSON...</div>
+        </div>
+
+        <div class="image-test">
+            <h2>Test 3: All Letters</h2>
+            <div id="all-letters" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px;">
+            </div>
+            <div class="info" id="all-status">Loading all letters...</div>
+        </div>
+    </div>
+
+    <script>
+        async function testJSON() {
+            try {
+                const response = await fetch('/static/data/sign_lessons.json');
+                console.log('Response status:', response.status);
+
+                if (!response.ok) {
+                    throw new Error('Failed to load: ' + response.status);
+                }
+
+                const lessons = await response.json();
+                console.log('Loaded lessons:', lessons.length);
+
+                if (lessons.length > 0) {
+                    document.getElementById('test2').src = lessons[0].image_url;
+                    document.getElementById('json-status').textContent = '✓ Successfully loaded letter ' + lessons[0].name + ' from JSON!';
+                    document.getElementById('json-status').style.color = '#4ade80';
+
+                    const container = document.getElementById('all-letters');
+                    lessons.forEach(lesson => {
+                        const img = document.createElement('img');
+                        img.src = lesson.image_url;
+                        img.alt = lesson.name;
+                        img.title = lesson.name;
+                        img.style.width = '100px';
+                        img.style.height = '100px';
+                        img.style.cursor = 'pointer';
+                        img.onclick = () => alert(lesson.description);
+                        container.appendChild(img);
+                    });
+                    document.getElementById('all-status').textContent = `✓ Loaded all ${lessons.length} letters! Click any letter to see its description.`;
+                    document.getElementById('all-status').style.color = '#4ade80';
+                } else {
+                    document.getElementById('json-status').textContent = '✗ JSON loaded but no lessons found';
+                    document.getElementById('json-status').style.color = '#ef4444';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('json-status').textContent = '✗ Error: ' + error.message;
+                document.getElementById('json-status').style.color = '#ef4444';
+            }
+        }
+
+        testJSON();
+    </script>
+</body>
+</html>

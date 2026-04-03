@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braille ↔ Text Translator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+
+      .braille-font {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+      }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen antialiased">
+
+
+    <header class="p-6 max-w-5xl mx-auto w-full">
+        <nav class="flex items-center">
+            <a href="/"
+               class="flex items-center text-gray-400 hover:text-white transition-colors rounded-full p-2 focus:outline-none focus:ring-4 focus:ring-indigo-500"
+               aria-label="Back to home">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                <span class="ml-2 font-semibold">Home</span>
+            </a>
+        </nav>
+    </header>
+
+
+    <main class="max-w-5xl mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center">Braille ↔ Text Translator</h1>
+        <p class="text-lg text-gray-300 mt-2 text-center">
+            Translate between English text and Grade 1 Braille.
+        </p>
+
+        <div class="mt-12 grid md:grid-cols-2 gap-8">
+
+
+            <form method="POST" class="bg-gray-800 p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-semibold mb-4">Text to Braille</h2>
+                <div class="mb-4">
+                    <label for="text_input" class="block text-sm font-medium text-gray-300 mb-2">Enter Text:</label>
+                    <textarea id="text_input" name="text" rows="5"
+                              class="w-full p-3 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-500"
+                              aria-label="Enter text to translate to Braille"
+                              placeholder="Hello World"></textarea>
+                </div>
+                <button type="submit" name="text_to_braille"
+                        class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                    Translate to Braille
+                </button>
+            </form>
+
+
+            <form method="POST" class="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col">
+                <h2 class="text-2xl font-semibold mb-4">Braille to Text</h2>
+                <div class="mb-4">
+                    <label for="braille_input" class="block text-sm font-medium text-gray-300 mb-2">Enter Braille:</label>
+                    <textarea id="braille_input" name="braille" rows="3"
+                              class="w-full p-3 bg-gray-700 rounded-lg text-white placeholder-gray-400 braille-font focus:outline-none focus:ring-4 focus:ring-indigo-500"
+                              aria-label="Enter Braille characters to translate to text"
+                              placeholder="⠓⠑⠇⠇⠕ ⠺⠕⠗⠇⠙"></textarea>
+                </div>
+                
+                <div class="mb-4 flex-grow">
+                    <label class="block text-xs font-medium text-gray-400 mb-2">Virtual Braille Keyboard:</label>
+                    <div id="braille-keyboard" class="flex flex-wrap gap-2 bg-gray-700 p-2 rounded-lg">
+                        <!-- Keyboard populated by JS -->
+                    </div>
+                </div>
+
+                <button type="submit" name="braille_to_text"
+                        class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 mt-auto">
+                    Translate to Text
+                </button>
+            </form>
+        </div>
+
+
+        <div class="mt-8 bg-gray-800 p-6 rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-semibold mb-4">Result</h2>
+            <div class="bg-gray-700 p-4 rounded-lg min-h-[100px]">
+                <p class="text-lg text-white braille-font">{{ translation or 'Your translation will appear here.' }}</p>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        lucide.createIcons();
+
+        // Initialize Virtual Braille Keyboard
+        const brailleKeys = [
+            { char: 'A', br: '⠁' }, { char: 'B', br: '⠃' }, { char: 'C', br: '⠉' }, { char: 'D', br: '⠙' }, { char: 'E', br: '⠑' },
+            { char: 'F', br: '⠋' }, { char: 'G', br: '⠛' }, { char: 'H', br: '⠓' }, { char: 'I', br: '⠊' }, { char: 'J', br: '⠚' },
+            { char: 'K', br: '⠅' }, { char: 'L', br: '⠇' }, { char: 'M', br: '⠍' }, { char: 'N', br: '⠝' }, { char: 'O', br: '⠕' },
+            { char: 'P', br: '⠏' }, { char: 'Q', br: '⠟' }, { char: 'R', br: '⠗' }, { char: 'S', br: '⠎' }, { char: 'T', br: '⠞' },
+            { char: 'U', br: '⠥' }, { char: 'V', br: '⠧' }, { char: 'W', br: '⠺' }, { char: 'X', br: '⠭' }, { char: 'Y', br: '⠽' },
+            { char: 'Z', br: '⠵' },
+            { char: '1', br: '⠼⠁' }, { char: '2', br: '⠼⠃' }, { char: '3', br: '⠼⠉' }, { char: '4', br: '⠼⠙' }, { char: '5', br: '⠼⠑' },
+            { char: '6', br: '⠼⠋' }, { char: '7', br: '⠼⠛' }, { char: '8', br: '⠼⠓' }, { char: '9', br: '⠼⠊' }, { char: '0', br: '⠼⠚' },
+            { char: 'Space', br: ' ' }
+        ];
+
+        const keyboardContainer = document.getElementById('braille-keyboard');
+        const brailleInput = document.getElementById('braille_input');
+
+        if (keyboardContainer && brailleInput) {
+            brailleKeys.forEach(item => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                if (item.char === 'Space') {
+                    btn.className = 'px-4 h-10 bg-gray-600 hover:bg-gray-500 text-white rounded flex items-center justify-center transition-colors shadow focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm font-sans flex-grow';
+                    btn.textContent = 'Space';
+                } else {
+                    btn.className = 'w-10 h-10 bg-gray-600 hover:bg-gray-500 text-white rounded flex items-center justify-center transition-colors shadow focus:outline-none focus:ring-2 focus:ring-indigo-400 braille-font group relative';
+                    btn.textContent = item.br;
+                    
+                    // Add a tiny tooltip for the letter
+                    const tooltip = document.createElement('span');
+                    tooltip.textContent = item.char;
+                    tooltip.className = 'absolute -top-7 left-1/2 min-w-[24px] transform -translate-x-1/2 bg-gray-900 text-xs text-white px-1 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity font-sans text-center pointer-events-none before:content-[""] before:absolute before:-bottom-1 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-gray-900';
+                    btn.appendChild(tooltip);
+                }
+                
+                btn.addEventListener('click', () => {
+                    // insert at cursor position
+                    const start = brailleInput.selectionStart;
+                    const end = brailleInput.selectionEnd;
+                    const text = brailleInput.value;
+                    const before = text.substring(0, start);
+                    const after = text.substring(end, text.length);
+                    
+                    brailleInput.value = before + item.br + after;
+                    
+                    // setup cursor back
+                    brailleInput.selectionStart = brailleInput.selectionEnd = start + item.br.length;
+                    brailleInput.focus();
+                });
+                keyboardContainer.appendChild(btn);
+            });
+        }
+    </script>
+</body>
+</html>

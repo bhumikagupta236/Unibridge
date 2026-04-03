@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniBridge - Speech & Text</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+
+      textarea {
+        background-color: #374151;
+        color: #F3F4F6;
+      }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen antialiased">
+
+
+    <header class="p-6 max-w-7xl mx-auto w-full">
+
+        <a href="/" class="flex items-center text-gray-400 hover:text-white group">
+            <i data-lucide="arrow-left" class="w-5 h-5 mr-2 transition-transform group-hover:-translate-x-1"></i>
+            Back to Home
+        </a>
+    </header>
+
+
+    <main class="max-w-4xl mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center mb-10">Speech & Text</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+
+            <div class="bg-gray-800 p-8 rounded-2xl">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                    <i data-lucide="file-text" class="w-7 h-7 mr-3 text-indigo-400"></i>
+                    Text to Speech
+                </h2>
+                <p class="text-gray-300 mb-4">Type text below and click the button to hear it spoken.</p>
+
+                <textarea id="textToSpeak" class="w-full h-48 p-4 rounded-lg border-2 border-gray-700 focus:border-indigo-500 focus:ring-0 outline-none" placeholder="Type anything here..."></textarea>
+
+                <button id="speakButton" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center transition-colors">
+                    <i data-lucide="volume-2" class="w-5 h-5 mr-2"></i>
+                    Speak
+                </button>
+            </div>
+
+
+            <div class="bg-gray-800 p-8 rounded-2xl">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                    <i data-lucide="mic" class="w-7 h-7 mr-3 text-indigo-400"></i>
+                    Speech to Text
+                </h2>
+                <p class="text-gray-300 mb-4">Click the button and start speaking. Your words will appear below.</p>
+
+                <textarea id="speechResult" class="w-full h-48 p-4 rounded-lg border-2 border-gray-700" placeholder="Your spoken text will appear here..."></textarea>
+
+                <button id="listenButton" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center transition-colors">
+                    <i data-lucide="mic" class="w-5 h-5 mr-2"></i>
+                    Start Listening
+                </button>
+                <p id="listenStatus" class="text-gray-400 text-sm text-center mt-3 h-4"></p>
+            </div>
+
+        </div>
+    </main>
+
+
+    <script>
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    </script>
+
+
+    <script>
+        const speakButton = document.getElementById('speakButton');
+        const textToSpeak = document.getElementById('textToSpeak');
+
+        speakButton.addEventListener('click', () => {
+            const text = textToSpeak.value;
+            if (text.trim().length > 0) {
+                fetch('/api/log_activity', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ activity: 'Text to Speech', details: `Spoke words: "${text}"` })
+                }).catch(e => console.warn(e));
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                window.speechSynthesis.speak(utterance);
+            }
+        });
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            const listenButton = document.getElementById('listenButton');
+            const speechResult = document.getElementById('speechResult');
+            const listenStatus = document.getElementById('listenStatus');
+
+            listenButton.addEventListener('click', () => {
+                listenStatus.textContent = 'Starting microphone...';
+                listenButton.disabled = true;
+                listenButton.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i> Listening...';
+                if (window.lucide) {
+                  lucide.createIcons();
+                }
+
+                try {
+                  recognition.start();
+                } catch(e) {
+                  console.error('recognition.start() error:', e);
+                  listenStatus.textContent = 'Error starting recognition: ' + e.message;
+                  listenButton.disabled = false;
+                  listenButton.innerHTML = '<i data-lucide="mic" class="w-5 h-5 mr-2"></i> Start Listening';
+                  if (window.lucide) {
+                    lucide.createIcons();
+                  }
+                }
+            });
+
+            recognition.onstart = () => {
+                console.log('Speech recognition started');
+                listenStatus.textContent = 'Listening...';
+            };
+
+            recognition.onresult = (event) => {
+                console.log('Speech recognition result:', event);
+                const transcript = event.results[0][0].transcript;
+                speechResult.value = transcript;
+                listenStatus.textContent = 'Got it! Finishing up...';
+                
+                fetch('/api/log_activity', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ activity: 'Speech to Text', details: `Recognized words: "${transcript}"` })
+                }).catch(e => console.warn(e));
+
+                try {
+                    recognition.stop();
+                } catch (e) {
+                    console.warn('recognition.stop() error:', e);
+                }
+            };
+
+            recognition.onspeechend = () => {
+                console.log('Speech ended');
+                listenStatus.textContent = 'Processing...';
+                try {
+                    recognition.stop();
+                } catch (e) {
+                    console.warn('recognition.stop() error on speechend:', e);
+                }
+            };
+
+            recognition.onaudiostart = () => {
+                console.log('Audio capturing started');
+            };
+            recognition.onaudioend = () => {
+                console.log('Audio capturing ended');
+            };
+            recognition.onsoundstart = () => {
+                console.log('Some sound detected');
+            };
+            recognition.onsoundend = () => {
+                console.log('Sound stopped');
+            };
+
+            recognition.onend = () => {
+                console.log('Speech recognition ended');
+                if (!listenStatus.textContent.startsWith('Error')) {
+                    listenStatus.textContent = '';
+                }
+                listenButton.disabled = false;
+                listenButton.innerHTML = '<i data-lucide="mic" class="w-5 h-5 mr-2"></i> Start Listening';
+                if (window.lucide) {
+                  lucide.createIcons();
+                }
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                if (event.error === 'no-speech') {
+                    listenStatus.textContent = 'Error: no speech detected. Please check your microphone and try speaking a bit louder/closer.';
+                } else {
+                    listenStatus.textContent = 'Error: ' + event.error;
+                }
+                listenButton.disabled = false;
+                listenButton.innerHTML = '<i data-lucide="mic" class="w-5 h-5 mr-2"></i> Start Listening';
+                if (window.lucide) {
+                  lucide.createIcons();
+                }
+            };
+
+        } else {
+            document.getElementById('listenButton').style.display = 'none';
+            document.getElementById('listenStatus').textContent = 'Sorry, your browser does not support Speech to Text.';
+        }
+    </script>
+</body>
+</html>

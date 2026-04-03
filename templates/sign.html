@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign → Text Recognition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+
+      video {
+        transform: scaleX(-1);
+      }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen antialiased">
+
+
+    <header class="p-6 max-w-5xl mx-auto w-full">
+        <nav class="flex items-center">
+            <a href="/"
+               class="flex items-center text-gray-400 hover:text-white transition-colors rounded-full p-2 focus:outline-none focus:ring-4 focus:ring-indigo-500"
+               aria-label="Back to home">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                <span class="ml-2 font-semibold">Home</span>
+            </a>
+        </nav>
+    </header>
+
+
+    <main class="max-w-5xl mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center">Live Sign Recognition</h1>
+        <p class="text-lg text-gray-300 mt-2 text-center">
+            Show your hand to the webcam. Our (simulated) AI will try to recognize the sign.
+        </p>
+
+        <div class="mt-8 grid md:grid-cols-2 gap-8 items-start">
+
+
+            <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-semibold mb-4">Webcam Feed</h2>
+
+
+                <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden">
+                    <video id="webcam" autoplay playsinline class="w-full h-full object-cover"
+                           aria-label="Live webcam feed for sign language recognition"></video>
+                </div>
+
+
+                <canvas id="canvas" class="hidden"></canvas>
+
+
+                <div id="status"
+                     class="mt-4 text-center text-gray-400"
+                     aria-live="polite">
+                    Connecting to server...
+                </div>
+            </div>
+
+
+            <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-semibold mb-4">Recognized Sign</h2>
+                <div class="aspect-video bg-gray-700 rounded-lg flex items-center justify-center">
+
+                    <p id="result-text"
+                       class="text-9xl font-bold text-indigo-400"
+                       aria-live="assertive">
+                        ...
+                    </p>
+                </div>
+                <p class="text-center text-gray-400 mt-4">
+                    Our OpenCV "brain" is recognizing 5 signs: 'A' (fist), 'B' (open hand), 'C' (curved hand), 'V' (2 fingers), and 'W' (3 fingers).
+                </p>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        lucide.createIcons();
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const socket = io();
+
+            const video = document.getElementById('webcam');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            const statusEl = document.getElementById('status');
+            const resultEl = document.getElementById('result-text');
+
+            socket.on('connect', () => {
+                console.log('Connected to server!');
+                statusEl.textContent = 'Connected! Starting webcam...';
+                startWebcam();
+            });
+
+            socket.on('disconnect', () => {
+                console.log('Disconnected from server.');
+                statusEl.textContent = 'Disconnected. Please refresh.';
+            });
+
+            socket.io.on('error', (err) => {
+                console.error('Socket.IO connection error:', err);
+                statusEl.textContent = 'Error connecting to server.';
+            });
+
+            let lastLoggedLetter = '';
+
+            socket.on('recognition_result', (data) => {
+                console.log('Recognition result from server:', data);
+                resultEl.textContent = (data && data.letter) ? data.letter : '...';
+                if (data && data.status) {
+                    statusEl.textContent = `Receiving... (${data.status})`;
+                } else {
+                    statusEl.textContent = 'Receiving...';
+                }
+
+                if (data && data.letter && data.letter !== lastLoggedLetter) {
+                    lastLoggedLetter = data.letter;
+                    fetch('/api/log_activity', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ activity: 'Sign Language Detection', details: `Recognized sign: "${data.letter}"` })
+                    }).catch(e => console.warn(e));
+                } else if (!data || !data.letter) {
+                    lastLoggedLetter = '';
+                }
+            });
+
+            async function startWebcam() {
+                try {
+                    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                        console.error('getUserMedia is not supported in this browser/context');
+                        statusEl.textContent = 'Error: getUserMedia is not supported in this browser.';
+                        statusEl.setAttribute('role', 'alert');
+                        return;
+                    }
+
+                    const constraints = {
+                        video: {
+                            facingMode: 'user',
+                            width: { ideal: 640 },
+                            height: { ideal: 480 }
+                        }
+                    };
+
+                    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    video.srcObject = stream;
+
+                    video.onloadedmetadata = () => {
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+
+                        setInterval(sendFrame, 100);
+                    };
+
+                } catch (err) {
+                    console.error('Error accessing webcam:', err);
+                    const name = err && err.name ? err.name : 'UnknownError';
+                    const message = err && err.message ? err.message : '';
+                    statusEl.textContent = `Error: Could not access webcam. (${name}: ${message})`;
+                    statusEl.setAttribute('role', 'alert');
+                }
+            }
+
+            function sendFrame() {
+                if (!socket.connected) return;
+
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                const imageData = canvas.toDataURL('image/jpeg', 0.5);
+
+                socket.emit('video_frame', imageData.split(',')[1]);
+            }
+        });
+    </script>
+</body>
+</html>

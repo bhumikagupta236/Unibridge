@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "word": "Hello",
+    "braille": "⠓⠑⠇⠇⠕",
+    "sign_image_url": "https://placehold.co/600x400/27272a/93c5fd?text=Sign+for+Hello"
+  },
+  {
+    "id": 2,
+    "word": "Goodbye",
+    "braille": "⠛⠕⠕⠙⠃⠽⠑",
+    "sign_image_url": "https://placehold.co/600x400/27272a/93c5fd?text=Sign+for+Goodbye"
+  },
+  {
+    "id": 3,
+    "word": "Thank You",
+    "braille": "⠞⠓⠁⠝⠅⠀⠽⠕⠥",
+    "sign_image_url": "https://placehold.co/600x400/27272a/93c5fd?text=Sign+for+Thank+You"
+  },
+  {
+    "id": 4,
+    "word": "Yes",
+    "braille": "⠽⠑⠎",
+    "sign_image_url": "https://placehold.co/600x400/27272a/93c5fd?text=Sign+for+Yes"
+  },
+  {
+    "id": 5,
+    "word": "No",
+    "braille": "⠝⠕",
+    "sign_image_url": "https://placehold.co/600x400/27272a/93c5fd?text=Sign+for+No"
+  }
+]
