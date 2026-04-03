@@ -580,7 +580,7 @@ def handle_video_frame(data):
 # ============================================
 
 if __name__ == '__main__':
-    # This code runs when you execute: python uni.py
+    # This code runs when you execute: python app.py
     print("="*50)
     print("UniBridge Server Starting...")
     print("Open your browser and visit: http://127.0.0.1:5000")

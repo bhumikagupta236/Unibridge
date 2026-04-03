@@ -66,7 +66,7 @@ pip install -r requirements.txt
 ### 4. Run the Application:
 Start the Flask/Socket.IO server:
 ```bash
-python uni.py
+python app.py
 ```
 
 ### 5. Open Your Browser:
