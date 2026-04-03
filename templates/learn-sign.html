@@ -114,36 +114,7 @@
         let currentIndex = 0;
 
         const STATIC_ASL_BASE = "{{ url_for('static', filename='images/signs/asl/') }}";
-        let aslLocal = {};
-
-        const aslRemote = {
-            'A': 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Amer_Sign_Language_A.svg',
-            'B': 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Amer_Sign_Language_B.svg',
-            'C': '/static/images/signs/asl/c.png',
-            'D': 'https://upload.wikimedia.org/wikipedia/commons/d/d3/Amer_Sign_Language_D.svg',
-            'E': 'https://upload.wikimedia.org/wikipedia/commons/e/e6/Amer_Sign_Language_E.svg',
-            'F': 'https://upload.wikimedia.org/wikipedia/commons/f/f4/Amer_Sign_Language_F.svg',
-            'G': 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Amer_Sign_Language_G.svg',
-            'H': 'https://upload.wikimedia.org/wikipedia/commons/6/61/Amer_Sign_Language_H.svg',
-            'I': 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Amer_Sign_Language_I.svg',
-            'J': 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Amer_Sign_Language_J.svg',
-            'K': 'https://upload.wikimedia.org/wikipedia/commons/a/ae/Amer_Sign_Language_K.svg',
-            'L': 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Amer_Sign_Language_L.svg',
-            'M': 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Amer_Sign_Language_M.svg',
-            'N': 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Amer_Sign_Language_N.svg',
-            'O': 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Amer_Sign_Language_O.svg',
-            'P': 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Amer_Sign_Language_P.svg',
-            'Q': 'https://upload.wikimedia.org/wikipedia/commons/0/09/Amer_Sign_Language_Q.svg',
-            'R': 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Amer_Sign_Language_R.svg',
-            'S': 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Amer_Sign_Language_S.svg',
-            'T': 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Amer_Sign_Language_T.svg',
-            'U': 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Amer_Sign_Language_U.svg',
-            'V': 'https://upload.wikimedia.org/wikipedia/commons/4/48/Amer_Sign_Language_V.svg',
-            'W': 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Amer_Sign_Language_W.svg',
-            'X': 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Amer_Sign_Language_X.svg',
-            'Y': 'https://upload.wikimedia.org/wikipedia/commons/b/b5/Amer_Sign_Language_Y.svg',
-            'Z': 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Amer_Sign_Language_Z.svg'
-        };
+        let aslLocal = {};
 
         function tryLoadSequence(sources, onSuccess, onFail) {
             let idx = 0;
@@ -169,13 +140,16 @@
             document.getElementById('letter-display').textContent = current.name;
             document.getElementById('lesson-description').textContent = current.description;
 
-            const letter = current.name;
-            const sources = [];
-            const cb = '?v=' + new Date().getTime();
-            if (aslLocal[letter]?.url) sources.push(aslLocal[letter].url + cb);
-            const localCandidates = ['jpg','jpeg','png','gif','svg'].map(ext => `${STATIC_ASL_BASE}${letter}.${ext}${cb}`);
-            sources.push(...localCandidates);
-            if (aslRemote[letter]) sources.push(aslRemote[letter]);
+            const letter = current.name;
+            const sources = [];
+            // 1. URL from API (actual filename on disk)
+            if (aslLocal[letter]?.url) sources.push(aslLocal[letter].url);
+            // 2. Try lowercase then uppercase with common extensions
+            const exts = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'];
+            for (const ext of exts) {
+                sources.push(`${STATIC_ASL_BASE}${letter.toLowerCase()}.${ext}`);
+                sources.push(`${STATIC_ASL_BASE}${letter}.${ext}`);
+            }
 
             tryLoadSequence(
                 sources,
