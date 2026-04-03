@@ -18,7 +18,11 @@ import database
 # ============================================
 app = Flask(__name__)  # Create our web application
 app.config['SECRET_KEY'] = 'your_very_secret_key_!@#'  # Security key for sessions
-socketio = SocketIO(app, cors_allowed_origins="*")  # Enable real-time communication
+socketio = SocketIO(app,
+                    cors_allowed_origins="*",
+                    async_mode='gevent',
+                    logger=True,
+                    engineio_logger=True)  # Enable real-time communication
 
 database.init_db()  # Initialize SQLite Database
 
